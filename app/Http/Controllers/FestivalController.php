@@ -13,7 +13,9 @@ class FestivalController extends Controller
      */
     public function index()
     {
-        //
+        $festivals = Festival::all();
+
+        return view('festival.index', compact('festivals'));
     }
 
     /**
@@ -21,7 +23,7 @@ class FestivalController extends Controller
      */
     public function create()
     {
-        //
+        return view('festival.create');
     }
 
     /**
@@ -29,7 +31,9 @@ class FestivalController extends Controller
      */
     public function store(StoreFestivalRequest $request)
     {
-        //
+        Festival::create($request->validated());
+
+        return redirect()->route('festival.create')->with('success', 'Festival created successfully.');
     }
 
     /**
@@ -37,7 +41,7 @@ class FestivalController extends Controller
      */
     public function show(Festival $festival)
     {
-        //
+        return view('festival.show', compact('festival'));
     }
 
     /**
@@ -45,7 +49,7 @@ class FestivalController extends Controller
      */
     public function edit(Festival $festival)
     {
-        //
+        return view('festival.edit', compact('festival'));
     }
 
     /**
@@ -53,7 +57,9 @@ class FestivalController extends Controller
      */
     public function update(UpdateFestivalRequest $request, Festival $festival)
     {
-        //
+        $festival->update($request->validated());
+
+        return redirect()->route('festival.edit')->with('success', 'Festival updated successfully.');
     }
 
     /**
@@ -61,6 +67,8 @@ class FestivalController extends Controller
      */
     public function destroy(Festival $festival)
     {
-        //
+        $festival->delete();
+
+        return redirect()->route('festival.index')->with('success', 'Festival deleted successfully.');
     }
 }
