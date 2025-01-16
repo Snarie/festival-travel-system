@@ -18,14 +18,15 @@ class FestivalFactory extends Factory
      */
     public function definition(): array
     {
-        $date = $this->faker->dateTimeBetween('now', '+1 month')->format('Y-m-d');
+        $start_time = $this->faker->dateTimeBetween('next Monday', '+6 months');
+        $duration = $this->faker->numberBetween(2, 6);
+        $end_time = (clone $start_time)->modify("+{$duration} hours");
 
         return [
             'name' => $this->faker->company . ' Festival',
             'location' => $this->faker->city,
-            'date' => $date,
-            'start_time' => $this->faker->time('H:i'),
-            'end_time' => $this->faker->time('H:i'),
+            'start_time' => $start_time,
+            'end_time' => $end_time,
             'description' => $this->faker->paragraph,
         ];
     }

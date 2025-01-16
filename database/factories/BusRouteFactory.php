@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\BusRoute;
+use App\Models\Festival;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class BusRouteFactory extends Factory
 {
+    protected $model = BusRoute::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +21,12 @@ class BusRouteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // For manual creation
+            'festival_id' => Festival::factory(),
+            // Overwritten when created from seeder
+            'departure_time' => $this->faker->dateTimeThisYear(),
+            // Overwritten when created from seeder
+            'arrival_time' => $this->faker->dateTimeThisYear()
         ];
     }
 }

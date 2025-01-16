@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Festival extends Model
 {
@@ -17,4 +18,9 @@ class Festival extends Model
         'end_time',
         'description'
     ];
+
+    public function busRoutes(): HasMany
+    {
+        return $this->hasMany(BusRoute::class);
+    }
 }
