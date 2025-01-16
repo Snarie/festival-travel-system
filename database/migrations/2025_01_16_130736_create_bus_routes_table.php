@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bus_routes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('festival_id');
-            $table->dateTime('depature_time');
+            $table->dateTime('departure_time');
             $table->dateTime('arrival_time');
             $table->timestamps();
 

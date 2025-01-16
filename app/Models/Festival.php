@@ -13,7 +13,6 @@ class Festival extends Model
     protected $fillable = [
         'name',
         'location',
-        'date',
         'start_time',
         'end_time',
         'description'
